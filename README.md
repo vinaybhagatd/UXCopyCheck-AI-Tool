@@ -2,6 +2,11 @@
 
 Your Private, Local AI Auditor for Flawless UX Copy.
 
+Demo of UXCopyCheck AI Tool
+
+https://github.com/user-attachments/assets/fb6bebc0-925a-46d4-bac9-c86902e23253
+
+
 👋 About UXCopyCheck AI Tool
 
 UXCopyCheck is an innovative, open-source desktop application that brings the power of Artificial Intelligence directly to your machine to audit and enhance your UX copy. Designed for UX writers, product managers, and designers, it helps you craft clear, consistent, and effective user interface text.
