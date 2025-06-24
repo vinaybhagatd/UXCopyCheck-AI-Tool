@@ -17,8 +17,8 @@ OLLAMA_API_BASE_URL = "http://localhost:11434/api/generate"
 OLLAMA_MODEL = "gemma:2b" # CHANGE THIS LINE to a smaller, faster model
 
 app = FastAPI(
-    title="UXCopyCheck AI Tool (MVP)",
-    description="Automated UX Copy Audits for Clarity, Tone, and Actionability. All powered by local AI."
+    title="UXCopyCheck AI Tool",
+    description="Lifetime free automated UX Copy Audits powered by your private local AI tool."
 )
 
 templates_dir = "templates"
@@ -29,8 +29,8 @@ with open(os.path.join(templates_dir, "index.html"), "w") as f:
 templates = Jinja2Templates(directory=templates_dir)
 
 
-print("DEBUG: Script started. Initializing FastAPI application.")
-start_overall = time.time()
+# print("Script started.")
+# start_overall = time.time()
 
 HTML_CONTENT = """
 <!DOCTYPE html>
@@ -123,22 +123,22 @@ HTML_CONTENT = """
 <body class="p-4">
     <div class="container">
         <h1 class="text-3xl font-bold text-center text-indigo-800 mb-6">✍️ UXCopyCheck AI Tool (MVP)</h1>
-        <p class="text-center text-gray-600 mb-8">Automated UX Copy Audits for Clarity, Tone, and Actionability. All powered by local AI.</p>
+        <p class="text-center text-gray-600 mb-8">Audit your UX Copy free for lifetime on your private local AI tool.</p>
 
         <div class="mb-6">
             <label for="uxCopyInput" class="block text-gray-700 text-sm font-semibold mb-2">1. Paste Your UX Copy:</label>
-            <textarea id="uxCopyInput" rows="10" class="focus:border-indigo-500 transition-colors duration-200" placeholder="e.g., 'Click here to continue the process for your account activation. We appreciate your patience.'"></textarea>
+            <textarea id="uxCopyInput" rows="10" class="focus:border-indigo-500 transition-colors duration-200" placeholder="Enter here your UX copy to audit and improve."></textarea>
         </div>
 
         <div class="mb-8">
-            <label for="desiredToneInput" class="block text-gray-700 text-sm font-semibold mb-2">2. Specify Desired Tone:</label>
+            <label for="desiredToneInput" class="block text-gray-700 text-sm font-semibold mb-2">2. Specify desired tone for your UX Copy:</label>
             <input type="text" id="desiredToneInput" class="focus:border-indigo-500 transition-colors duration-200" value="friendly and direct" placeholder="e.g., 'friendly and direct', 'formal and professional', 'empathetic'">
         </div>
 
-        <button id="auditButton" class="w-full">🚀 Audit My UX Copy</button>
+        <button id="auditButton" class="w-full">Improve my UX Copy!</button>
 
         <div id="loadingIndicator" class="loading-indicator">
-            Auditing your copy... This may take a moment, especially on CPU.
+            Auditing your UX copy... Audit report generation time might vary based on your computer (if you run it on a CPU or a GPU) and hardware where you run this UXCopyCheck AI tool.
         </div>
         <div id="errorMessage" class="error-message hidden"></div>
 
@@ -208,7 +208,7 @@ HTML_CONTENT = """
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
-    print(f"DEBUG: Serving root HTML page. Overall startup took {time.time() - start_overall:.2f} seconds")
+    print(f"Serving HTML page. Overall startup took {time.time() - start_overall:.2f} seconds")
     return HTMLResponse(content=HTML_CONTENT)
 
 class AuditRequest(BaseModel):
@@ -221,14 +221,14 @@ async def audit_copy_endpoint(request_data: AuditRequest):
     input_text = request_data.input_text
     desired_tone = request_data.desired_tone
 
-    print("DEBUG: Audit request received.")
-    print(f"DEBUG: Input Text (first 50 chars): {input_text[:50]}...")
-    print(f"DEBUG: Desired Tone: {desired_tone}")
+    print("Received audit request.")
+    print(f"Your UX copy (first 50 chars): {input_text[:50]}...")
+    print(f"Selected Tone: {desired_tone}")
     start_time_section = time.time()
 
     rag_context = ""
 
-    print(f"DEBUG: RAG context setup (MVP placeholder) took {time.time() - start_time_section:.2f} seconds")
+    print(f"Setting up style guides & knowledge bases. It took {time.time() - start_time_section:.2f} seconds")
 
 
     start_time_section_prompt = time.time()
@@ -285,9 +285,9 @@ async def audit_copy_endpoint(request_data: AuditRequest):
 
     {rag_context}
     """
-    print(f"DEBUG: Prompt preparation took {time.time() - start_time_section_prompt:.2f} seconds")
+    print(f"Prompt preparation took {time.time() - start_time_section_prompt:.2f} seconds")
 
-    print("DEBUG: Making LLM call to Ollama...")
+    print("Making a call to LLM ...")
     start_time_section_llm_call = time.time()
     llm_response_content = "Error: Audit failed due to an internal server error."
 
@@ -300,8 +300,8 @@ async def audit_copy_endpoint(request_data: AuditRequest):
         response = requests.post(OLLAMA_API_BASE_URL, json=payload)
         response.raise_for_status()
         llm_response_content = response.json()["response"]
-        print(f"DEBUG: LLM call took {time.time() - start_time_section_llm_call:.2f} seconds")
-        print(f"DEBUG: Raw LLM Response (first 500 chars):\n{llm_response_content[:500]}...")
+        print(f"LLM call took {time.time() - start_time_section_llm_call:.2f} seconds")
+        print(f"Summarized suggestions to improve your UX Copy (first 500 chars):\n{llm_response_content[:500]}...")
 
     except requests.exceptions.ConnectionError:
         error_msg = "ERROR: Could not connect to Ollama server. Please ensure `ollama serve` is running and accessible at `http://localhost:11434`."
@@ -320,11 +320,11 @@ async def audit_copy_endpoint(request_data: AuditRequest):
         print(error_msg)
         return {"report_markdown": f"<div class='error-message'>{error_msg}</div>", "detail": error_msg}, 500
 
-    print(f"DEBUG: Total request processing time: {time.time() - start_request_processing:.2f} seconds")
+    print(f"Total request processing time: {time.time() - start_request_processing:.2f} seconds")
     return {"report_markdown": llm_response_content}
 
 if __name__ == "__main__":
-    print("DEBUG: Attempting to start Uvicorn server...")
+    print("Attempting to start Uvicorn server...")
     uvicorn.run(app, host="0.0.0.0", port=8000) # Changed port to 8000
 
 # Copyright© 2025 Vinay Bhagat 
