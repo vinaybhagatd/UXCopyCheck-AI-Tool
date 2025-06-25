@@ -1,6 +1,6 @@
  UXCopyCheck AI Tool
 
-Your Private, Local AI Auditor for Flawless UX Copy.
+Conduct lifetime free audits of your UX Copy powered by your private local AI tool.
 
 Demo of UXCopyCheck AI Tool
 
