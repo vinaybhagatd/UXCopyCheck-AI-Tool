@@ -18,7 +18,7 @@ OLLAMA_MODEL = "gemma:2b" # CHANGE THIS LINE to a smaller, faster model
 
 app = FastAPI(
     title="UXCopyCheck AI Tool",
-    description="Lifetime free automated UX Copy Audits powered by your private local AI tool."
+    description="Conduct lifetime free audits of your UX Copy powered by your private local AI tool."
 )
 
 templates_dir = "templates"
@@ -122,9 +122,8 @@ HTML_CONTENT = """
 </head>
 <body class="p-4">
     <div class="container">
-        <h1 class="text-3xl font-bold text-center text-indigo-800 mb-6">✍️ UXCopyCheck AI Tool (MVP)</h1>
-        <p class="text-center text-gray-600 mb-8">Audit your UX Copy free for lifetime on your private local AI tool.</p>
-
+        <h1 class="text-3xl font-bold text-center text-indigo-800 mb-6">✍️ UXCopyCheck AI Tool</h1>
+        <p class="text-center text-gray-600 mb-8">Conduct lifetime free audits of your UX Copy powered by your private local AI tool.</p>
         <div class="mb-6">
             <label for="uxCopyInput" class="block text-gray-700 text-sm font-semibold mb-2">1. Paste Your UX Copy:</label>
             <textarea id="uxCopyInput" rows="10" class="focus:border-indigo-500 transition-colors duration-200" placeholder="Enter here your UX copy to audit and improve."></textarea>
