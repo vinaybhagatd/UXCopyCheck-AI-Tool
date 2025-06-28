@@ -4,7 +4,7 @@ Conduct lifetime free audits of your UX Copy powered by your private local AI to
 
 Demo of UXCopyCheck AI Tool
 
-https://github.com/user-attachments/assets/fb6bebc0-925a-46d4-bac9-c86902e23253
+https://github.com/user-attachments/assets/66db76aa-fb5e-4c1c-9f3f-cbffb2ae6820
 
 
 👋 About UXCopyCheck AI Tool
