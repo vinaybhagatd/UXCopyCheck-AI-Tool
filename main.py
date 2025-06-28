@@ -29,8 +29,8 @@ with open(os.path.join(templates_dir, "index.html"), "w") as f:
 templates = Jinja2Templates(directory=templates_dir)
 
 
-# print("Script started.")
-# start_overall = time.time()
+print("Script started.")
+start_overall = time.time()
 
 HTML_CONTENT = """
 <!DOCTYPE html>
@@ -137,7 +137,7 @@ HTML_CONTENT = """
         <button id="auditButton" class="w-full">Improve my UX Copy!</button>
 
         <div id="loadingIndicator" class="loading-indicator">
-            Auditing your UX copy... Audit report generation time might vary based on your computer (if you run it on a CPU or a GPU) and hardware where you run this UXCopyCheck AI tool.
+            Generating your audit report… This may take longer depending on your computer and hardware.
         </div>
         <div id="errorMessage" class="error-message hidden"></div>
 
